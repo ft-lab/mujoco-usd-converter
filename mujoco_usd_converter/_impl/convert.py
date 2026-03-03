@@ -14,6 +14,7 @@ from pxr import Sdf, Tf, Usd, UsdGeom, UsdPhysics
 from ._flatten import export_flattened
 from .actuator import convert_actuators
 from .body import convert_bodies
+from .collision_filtering import convert_collision_filtering
 from .data import ConversionData, Tokens
 from .equality import convert_equalities
 from .exclude import convert_excludes
@@ -75,6 +76,7 @@ class Converter:
             references={},
             geom_targets={},
             name_cache=usdex.core.NameCache(),
+            geom_collision_filtering={},
             scene=self.params.scene,
             comment=self.params.comment,
         )
@@ -138,6 +140,9 @@ class Converter:
 
         # author the contact excludes
         convert_excludes(data)
+
+        # author the collision filtering
+        convert_collision_filtering(data)
 
         # create the asset interface
         usdex.core.addAssetInterface(asset_stage, source=data.content[Tokens.Contents])

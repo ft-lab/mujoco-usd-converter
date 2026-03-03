@@ -273,6 +273,7 @@ def apply_physics(geom_prim: Usd.Prim, geom: mujoco.MjsGeom, data: ConversionDat
     # Tendons target non-collision geoms by name, so keep a mujoco name to USD path mapping
     if geom.name:
         data.geom_targets[geom.name] = geom_prim.GetPath()
+        data.geom_collision_filtering[geom.name] = (geom.contype, geom.conaffinity)
 
     # some geom are for vizualization only, but still contribute to the mass of the body
     if geom.contype == 0 and geom.conaffinity == 0:

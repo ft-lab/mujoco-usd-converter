@@ -34,5 +34,6 @@ class ConversionData:
     references: dict[Tokens, dict[str, Usd.Prim]]
     geom_targets: dict[str, Sdf.Path]
     name_cache: usdex.core.NameCache
+    geom_collision_filtering: dict[str, tuple[int, int]]
     scene: bool
     comment: str

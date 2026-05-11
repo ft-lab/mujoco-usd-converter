@@ -3,7 +3,7 @@ name: Benchmark
 on:
   pull_request:
     types: [labeled]
-  workflow_dispatch: {} # Manual trigger from Actions tab
+  workflow_dispatch:  # Manual trigger from Actions tab
 
 permissions:
   contents: read
@@ -24,7 +24,7 @@ jobs:
         uses: ./.github/actions/bootstrap
 
       - name: Run benchmarks for all repositories
-        run:
+        run: |
           # Define repositories as arrays
           declare -a urls=(
             "https://github.com/google-deepmind/mujoco_menagerie"
